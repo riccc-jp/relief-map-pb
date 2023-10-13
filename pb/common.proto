@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import public "google/protobuf/empty.proto";
+import public "google/protobuf/any.proto";
+import public "google/protobuf/timestamp.proto";
+import public "google/protobuf/wrappers.proto";
+
+package bys.common;
+
+
+// ----------------------------------------------------------------------------
+// 共通の列挙型
+// ----------------------------------------------------------------------------
+
+// 使用状況
+enum UsageStatusType {
+    NO_USAGE_STATUS = 0;
+    UNAVAILABLE     = 1;  // 使用不可
+    UNCERTAIN       = 2;  // 不明
+    CLOSED          = 3;  // 閉鎖
+    INUSE           = 4;  // 開設
+}
+
+
+// ----------------------------------------------------------------------------
+// 共通のメッセージ定義
+// ----------------------------------------------------------------------------
+
+// ページングのための情報
+message Paging {
+    string token = 1;               // ページングトークン
+    uint32 offset = 2;              // 取得開始位置
+    uint32 count = 3;               // 取得したい件数
+}
+
+// 日付
+message Date {
+    uint32 year   = 1; // 1 ~ 9999 を受ける想定
+    uint32 month  = 2; // 1 ~ 12 を受ける想定
+    uint32 day    = 3; // 1 ~ 31 を受ける想定
+}
+
+
+// ----------------------------------------------------------------------------
+// サービス定義
+// ----------------------------------------------------------------------------
+
+service CommonService {
+}
+

@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package relief.facilities;
+
+// ----------------------------------------------------------------------------
+// 列挙型
+// ----------------------------------------------------------------------------
+
+enum FacilityType {
+    NO_FACILITY_TYPE = 0;
+    SCHOOL = 1;                  // 学校
+    COMMUNITY_CENTER = 2;        // 公民館
+    PARK = 3;                    // 公園
+    SHRINE = 4;                  // 神社
+    TEMPLE = 5;                  // 寺院
+    CHURCHES = 6;                // キリスト教会
+    OTHER_FACILITY = 7;          // その他の宗教施設
+    OTHER = 8;                   // その他
+    OTHER_FACILITY_OLD = 9;      // その他宗教施設
+}
+
+enum WorkingStatus {
+    NO_WARKING_STATUS = 0;  // 不明
+    WORKING = 1;  // 使用可能
+    NOT_WORKING = 2;  // 使用不可
+}
+
+// ----------------------------------------------------------------------------
+// メッセージ定義
+// ----------------------------------------------------------------------------
+
+// 施設
+message Facility {
+    int32   id        = 1;
+    FacilityType  facility_type_id = 2;  // OUT    : 施設の種類
+    int32  prefecture_id = 3;  // OUT    : 都道府県コード
+    int32  city_id = 4;  // OUT    : Cities.id
+    string  name = 5;  // OUT    : 施設名称
+    string  name_kana = 6;  // OUT    : 施設名称かな
+    string  address_1 = 7;  // OUT    : 住所1
+    string  address_3 = 8;  // OUT    : 住所2
+    string  address_3 = 9;  // OUT    : 住所3
+    uint32  capacity = 10;  // OUT    : 最大収容人数
+    float  latitude = 11;  // OUT    : 緯度
+    float  longitude = 12;  // OUT    : 経度
+    string  telephone = 13;  // OUT    : 施設の電話番号
+    int32  group_id = 14;  // OUT    : 所属組織
+    bool is_in_training = 15;  // OUT   : 訓練中かどうか
+    google.protobuf.Timestamp  created_at = 15;
+    google.protobuf.Timestamp  updated_at = 16;
+}
+
+
+// 検索条件
+message SearchCondition {
+    uint32                    group_id           = 1; // 組織ID
+    UsageStatusType           usage_status_type  = 2; // 使用状況種別
+}
+
+// 施設のコレクション
+message FacilityList {
+    repeated Facility items  = 1; // 施設の配列
+}
+
+// 避難状況
+message Refuge {
+    int32           facility_id           =  1;  // IN OUT: 施設ID(必須)
+    UsageStatusType usage_statys_type     =  2;  // IN OUT: 開設状況
+    int32           refugees              =  3;  // IN OUT: 避難者数
+    int32           male_num              =  4;  // IN OUT: 男性人数
+    int32           female_num            =  5;  // IN OUT: 女性人数
+    int32           households_num        =  6;  // IN OUT: 世帯数
+    int32           baby_num              =  7;  // IN OUT: 乳児数
+    int32           pregnant_woman_num    =  8;  // IN OUT: 妊婦数
+    int32           invalid_num           =  9;  // IN OUT: 病人数
+    int32           casualty_num          = 10;  // IN OUT: 負傷者数
+    int32           needing_care_num      = 11;  // IN OUT: 要介護者数
+    string          comment               = 12;  // IN OUT: コメント
+    string          contact               = 13;  // IN OUT: 連絡先
+    string          ip                    = 14;  // IN OUT: 投稿元IPアドレス(省略可能)
+    bool            is_in_training        = 15;  // IN OUT: 避難訓練中の投稿かどうかのフラグ
+    WorkingStatus   electricity_working   = 16;  // IN OUT: インフラの稼働状況 - 電気
+    WorkingStatus   water_working         = 17;  // IN OUT: インフラの稼働状況 - 水
+    WorkingStatus   gas_working           = 18;  // IN OUT: インフラの稼働状況 - ガス
+    WorkingStatus   network_working       = 19;  // IN OUT: インフラの稼働状況 - 通信
+    google.protobuf.Timestamp regist_date = 20;  // IN OUT: 投稿日時(省略時は現在日時)
+    int32           user_id               = 21;  // IN OUT: 投稿者(省略可能)
+    int32           group_id              = 22;  // IN OUT: 投稿時のグループ(省略可能)
+    int32           sender_app_type_id    = 23;  //    OUT: 投稿元アプリID
+}
+
+
+// ----------------------------------------------------------------------------
+// サービス定義
+// ----------------------------------------------------------------------------
+
+service FacilityService {
+    rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
+    rpc Search(SearchCondition) returns (FacilityList) { }
+    rpc PostRefuge(Refuge) returns (Refuge) { }
+}

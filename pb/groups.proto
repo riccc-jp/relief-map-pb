@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package relief.groups;
+
+
+// ----------------------------------------------------------------------------
+// メッセージ定義
+// ----------------------------------------------------------------------------
+
+
+// 組織
+message Group {
+    int32                      id         = 1;    // OUT    : 組織ID
+    string                     name       = 2;    // OUT    : 組織名
+    google.protobuf.Timestamp  updated_at = 3;    // OUT    : 更新日時
+}
+
+
+// ----------------------------------------------------------------------------
+// サービス定義
+// ----------------------------------------------------------------------------
+
+service GroupService {
+    rpc GetGroupById(google.protobuf.Int32Value) returns (Group) { }
+}
