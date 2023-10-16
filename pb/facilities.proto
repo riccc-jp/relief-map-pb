@@ -40,7 +40,7 @@ message Facility {
     string  name = 5;  // OUT    : 施設名称
     string  name_kana = 6;  // OUT    : 施設名称かな
     string  address_1 = 7;  // OUT    : 住所1
-    string  address_3 = 8;  // OUT    : 住所2
+    string  address_2 = 8;  // OUT    : 住所2
     string  address_3 = 9;  // OUT    : 住所3
     uint32  capacity = 10;  // OUT    : 最大収容人数
     float  latitude = 11;  // OUT    : 緯度
