@@ -48,15 +48,15 @@ message Facility {
     string  telephone = 13;  // OUT    : 施設の電話番号
     int32  group_id = 14;  // OUT    : 所属組織
     bool is_in_training = 15;  // OUT   : 訓練中かどうか
-    google.protobuf.Timestamp  created_at = 15;
-    google.protobuf.Timestamp  updated_at = 16;
+    google.protobuf.Timestamp  created_at = 16;
+    google.protobuf.Timestamp  updated_at = 17;
 }
 
 
 // 検索条件
 message SearchCondition {
     uint32                    group_id           = 1; // 組織ID
-    UsageStatusType           usage_status_type  = 2; // 使用状況種別
+    relief.common.UsageStatusType usage_status_type  = 2; // 使用状況種別
 }
 
 // 施設のコレクション
@@ -67,7 +67,7 @@ message FacilityList {
 // 避難状況
 message Refuge {
     int32           facility_id           =  1;  // IN OUT: 施設ID(必須)
-    UsageStatusType usage_statys_type     =  2;  // IN OUT: 開設状況
+    relief.common.UsageStatusType usage_statys_type     =  2;  // IN OUT: 開設状況
     int32           refugees              =  3;  // IN OUT: 避難者数
     int32           male_num              =  4;  // IN OUT: 男性人数
     int32           female_num            =  5;  // IN OUT: 女性人数

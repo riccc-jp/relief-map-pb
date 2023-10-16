@@ -5,7 +5,7 @@ import public "google/protobuf/any.proto";
 import public "google/protobuf/timestamp.proto";
 import public "google/protobuf/wrappers.proto";
 
-package bys.common;
+package relief.common;
 
 
 // ----------------------------------------------------------------------------
