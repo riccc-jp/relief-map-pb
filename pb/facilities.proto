@@ -55,7 +55,7 @@ message Facility {
 
 // 検索条件
 message SearchCondition {
-    uint32                    group_id           = 1; // 組織ID
+    repeated uint32               group_ids          = 1; // 組織ID
     relief.common.UsageStatusType usage_status_type  = 2; // 使用状況種別
 }
 
