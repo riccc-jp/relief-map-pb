@@ -67,7 +67,7 @@ message FacilityList {
 // 避難状況
 message Refuge {
     int32           facility_id           =  1;  // IN OUT: 施設ID(必須)
-    relief.common.UsageStatusType usage_statys_type     =  2;  // IN OUT: 開設状況
+    relief.common.UsageStatusType usage_status_type     =  2;  // IN OUT: 開設状況
     int32           refugees              =  3;  // IN OUT: 避難者数
     int32           male_num              =  4;  // IN OUT: 男性人数
     int32           female_num            =  5;  // IN OUT: 女性人数
