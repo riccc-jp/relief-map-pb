@@ -27,6 +27,14 @@ enum WorkingStatus {
     NOT_WORKING = 2;  // 使用不可
 }
 
+enum CongestionType {
+    NO_CONGESTION_TYPE = 0;  // 不明
+    EMPTY = 1;  // 空き
+    HALF = 2;  // 半分
+    CROWDED = 3;  // 混雑
+    FULL = 4;  // 満員
+}
+
 // ----------------------------------------------------------------------------
 // メッセージ定義
 // ----------------------------------------------------------------------------
@@ -89,6 +97,7 @@ message Refuge {
     int32           user_id               = 21;  // IN OUT: 投稿者(省略可能)
     int32           group_id              = 22;  // IN OUT: 投稿時のグループ(省略可能)
     int32           sender_app_type_id    = 23;  //    OUT: 投稿元アプリID
+    CongestionType  congestion_type       = 24;  // IN OUT: 混雑状況
 }
 
 
