@@ -27,6 +27,14 @@ enum WorkingStatus {
     NOT_WORKING = 2;  // 使用不可
 }
 
+enum CongestionType {
+    NO_CONGESTION_TYPE = 0;  // 不明
+    EMPTY = 1;  // 空き
+    HALF = 2;  // 半分
+    CROWDED = 3;  // 混雑
+    FULL = 4;  // 満員
+}
+
 // ----------------------------------------------------------------------------
 // メッセージ定義
 // ----------------------------------------------------------------------------
@@ -50,12 +58,13 @@ message Facility {
     bool is_in_training = 15;  // OUT   : 訓練中かどうか
     google.protobuf.Timestamp  created_at = 16;
     google.protobuf.Timestamp  updated_at = 17;
+    relief.common.UsageStatusType latest_usage_status_type_id = 18;  // 直近の投稿の開設状況
 }
 
 
 // 検索条件
 message SearchCondition {
-    uint32                    group_id           = 1; // 組織ID
+    repeated uint32               group_ids          = 1; // 組織ID
     relief.common.UsageStatusType usage_status_type  = 2; // 使用状況種別
 }
 
@@ -67,7 +76,7 @@ message FacilityList {
 // 避難状況
 message Refuge {
     int32           facility_id           =  1;  // IN OUT: 施設ID(必須)
-    relief.common.UsageStatusType usage_statys_type     =  2;  // IN OUT: 開設状況
+    relief.common.UsageStatusType usage_status_type     =  2;  // IN OUT: 開設状況
     int32           refugees              =  3;  // IN OUT: 避難者数
     int32           male_num              =  4;  // IN OUT: 男性人数
     int32           female_num            =  5;  // IN OUT: 女性人数
@@ -89,6 +98,7 @@ message Refuge {
     int32           user_id               = 21;  // IN OUT: 投稿者(省略可能)
     int32           group_id              = 22;  // IN OUT: 投稿時のグループ(省略可能)
     int32           sender_app_type_id    = 23;  //    OUT: 投稿元アプリID
+    CongestionType  congestion_type       = 24;  // IN OUT: 混雑状況
 }
 
 
