@@ -58,7 +58,7 @@ message Facility {
     bool is_in_training = 15;  // OUT   : 訓練中かどうか
     google.protobuf.Timestamp  created_at = 16;
     google.protobuf.Timestamp  updated_at = 17;
-    relief.common.UsageStatusType latest_usage_status_type = 18;  // 直近の投稿の開設状況
+    relief.common.UsageStatusType latest_usage_status_type_id = 18;  // 直近の投稿の開設状況
 }
 
 
