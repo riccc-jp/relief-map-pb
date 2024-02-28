@@ -42,7 +42,7 @@ enum CongestionType {
 // 施設
 message Facility {
     int32   id        = 1;
-    FacilityType  facility_type_id = 2;  // OUT    : 施設の種類
+    FacilityType  facility_type = 2;  // OUT    : 施設の種類
     int32  prefecture_id = 3;  // OUT    : 都道府県コード
     int32  city_id = 4;  // OUT    : Cities.id
     string  name = 5;  // OUT    : 施設名称
