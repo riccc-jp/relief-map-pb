@@ -73,8 +73,8 @@ message FacilityList {
     repeated Facility items  = 1; // 施設の配列
 }
 
-// 避難状況
-message Refuge {
+// 避難状況 （公開情報）
+message RefugePublic {
     int32           facility_id           =  1;  // IN OUT: 施設ID(必須)
     relief.common.UsageStatusType usage_status_type     =  2;  // IN OUT: 開設状況
     int32           refugees              =  3;  // IN OUT: 避難者数
@@ -88,18 +88,27 @@ message Refuge {
     int32           needing_care_num      = 11;  // IN OUT: 要介護者数
     string          comment               = 12;  // IN OUT: コメント
     string          contact               = 13;  // IN OUT: 連絡先
-    string          ip                    = 14;  // IN OUT: 投稿元IPアドレス(省略可能)
-    bool            is_in_training        = 15;  // IN OUT: 避難訓練中の投稿かどうかのフラグ
-    WorkingStatus   electricity_working   = 16;  // IN OUT: インフラの稼働状況 - 電気
-    WorkingStatus   water_working         = 17;  // IN OUT: インフラの稼働状況 - 水
-    WorkingStatus   gas_working           = 18;  // IN OUT: インフラの稼働状況 - ガス
-    WorkingStatus   network_working       = 19;  // IN OUT: インフラの稼働状況 - 通信
-    google.protobuf.Timestamp regist_date = 20;  // IN OUT: 投稿日時(省略時は現在日時)
-    int32           user_id               = 21;  // IN OUT: 投稿者(省略可能)
-    int32           group_id              = 22;  // IN OUT: 投稿時のグループ(省略可能)
-    int32           sender_app_type_id    = 23;  //    OUT: 投稿元アプリID
-    CongestionType  congestion_type       = 24;  // IN OUT: 混雑状況
+    bool            is_in_training        = 14;  // IN OUT: 避難訓練中の投稿かどうかのフラグ
+    WorkingStatus   electricity_working   = 15;  // IN OUT: インフラの稼働状況 - 電気
+    WorkingStatus   water_working         = 16;  // IN OUT: インフラの稼働状況 - 水
+    WorkingStatus   gas_working           = 17;  // IN OUT: インフラの稼働状況 - ガス
+    WorkingStatus   network_working       = 18;  // IN OUT: インフラの稼働状況 - 通信
+    google.protobuf.Timestamp regist_date = 19;  // IN OUT: 投稿日時(省略時は現在日時)
+    CongestionType  congestion_type       = 20;  // IN OUT: 混雑状況
 }
+
+// 避難状況（内部情報）
+message RefugeInternal {
+    string          ip                    =  1;  // IN OUT: 投稿元IPアドレス(省略可能)
+    int32           user_id               =  2;  // IN OUT: 投稿者(省略可能)
+    int32           group_id              =  3;  // IN OUT: 投稿時のグループ(省略可能)
+    int32           sender_app_type_id    =  4;  //    OUT: 投稿元アプリID
+}
+
+// 避難状況
+message Refuge {
+    RefugeInternal  refuge_public         =  1;  // IN OUT: 避難状況（公開情報）
+    RefugePublic    refuge_internal       =  2;  // IN OUT: 避難状況（内部情報）
 
 
 // ----------------------------------------------------------------------------
