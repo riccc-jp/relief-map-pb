@@ -118,6 +118,7 @@ message Refuge {
 // サービス定義
 // ----------------------------------------------------------------------------
 
+// @deprecated  CompareAndContrastService を使ってください
 service FacilityService {
     rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
     rpc Search(SearchCondition) returns (FacilityList) { }
