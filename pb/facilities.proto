@@ -40,7 +40,7 @@ enum CongestionType {
 // ----------------------------------------------------------------------------
 
 // 施設
-message Facility {
+message FacilityPublic {
     int32   id        = 1;
     FacilityType  facility_type = 2;  // OUT    : 施設の種類
     int32  prefecture_id = 3;  // OUT    : 都道府県コード
@@ -54,11 +54,13 @@ message Facility {
     float  latitude = 11;  // OUT    : 緯度
     float  longitude = 12;  // OUT    : 経度
     string  telephone = 13;  // OUT    : 施設の電話番号
-    int32  group_id = 14;  // OUT    : 所属組織
-    bool is_in_training = 15;  // OUT   : 訓練中かどうか
-    google.protobuf.Timestamp  created_at = 16;
-    google.protobuf.Timestamp  updated_at = 17;
-    relief.common.UsageStatusType latest_usage_status_type = 18;  // 直近の投稿の開設状況
+}
+
+message Facility {
+    FacilityPublic   facility_public      = 1;
+    google.protobuf.Timestamp  created_at = 2;
+    google.protobuf.Timestamp  updated_at = 3;
+    relief.common.UsageStatusType latest_usage_status_type = 4;  // 直近の投稿の開設状況
 }
 
 
@@ -107,8 +109,9 @@ message RefugeInternal {
 
 // 避難状況
 message Refuge {
-    RefugeInternal  refuge_public         =  1;  // IN OUT: 避難状況（公開情報）
-    RefugePublic    refuge_internal       =  2;  // IN OUT: 避難状況（内部情報）
+    RefugePublic    refuge_public         =  1;  // IN OUT: 避難状況（公開情報）
+    RefugeInternal  refuge_internal       =  2;  // IN OUT: 避難状況（内部情報）
+}
 
 
 // ----------------------------------------------------------------------------
