@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "common.proto";
+import "facilities.proto";
+
+package relief.compare_and_contrast;
+
+// ----------------------------------------------------------------------------
+// 列挙型
+// ----------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------
+// メッセージ定義
+// ----------------------------------------------------------------------------
+
+// 施設の情報と外部システムのID
+message FacilityWithExtId {
+    string external_id                               = 1; // IN OUT: 外部システムのID
+    relief.facilities.FacilityPublic facility_public = 2; // IN OUT: 施設の公開情報
+}
+
+// 検索条件
+message SearchCondition {
+    bool   exclude_mapped          = 1; // IN    :紐付け済みを除外するかどうか
+}
+
+// 配列定義
+message FacilityWithExtIdList {
+    repeated FacilityWithExtId items = 1;
+}
+
+// 避難状況と外部システムのID
+message RefugeWithExtId {
+    string                         external_id   =  1;  //    OUT: 外部システムのID
+    relief.facilities.RefugePublic refuge_public =  2;  //    OUT: 避難状況（公開情報）
+}
+
+
+// ----------------------------------------------------------------------------
+// サービス定義
+// ----------------------------------------------------------------------------
+
+service CompareAndContrastService {
+    // 施設情報の送信と自動紐付け依頼
+    rpc UpdateMapping(FacilityWithExtIdList) returns (FacilityWithExtIdList) { }
+
+    // 紐付け状況の取得
+    rpc GetMapping(SearchCondition) returns (FacilityWithExtIdList) { }
+}
