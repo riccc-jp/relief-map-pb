@@ -97,6 +97,7 @@ message RefugePublic {
     WorkingStatus   network_working       = 18;  // IN OUT: インフラの稼働状況 - 通信
     google.protobuf.Timestamp regist_date = 19;  // IN OUT: 投稿日時(省略時は現在日時)
     CongestionType  congestion_type       = 20;  // IN OUT: 混雑状況
+    int32           refuge_id             = 21;  //    OUT: 避難状況データのID
 }
 
 // 避難状況（内部情報）
