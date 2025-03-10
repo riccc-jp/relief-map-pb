@@ -35,6 +35,7 @@ message RefugeWithExtId {
     string                         external_id   =  1;  //    OUT: 外部システムのID
     relief.facilities.RefugePublic refuge_public =  2;  //    OUT: 避難状況（公開情報）
     int32                      deleted_refuge_id =  3;  //    OUT: 避難状況が削除された場合にセット
+    int32                           broadcast_id =  4;  //    OUT: 同報ID
 }
 
 
