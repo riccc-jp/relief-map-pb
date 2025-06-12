@@ -61,6 +61,7 @@ message Facility {
     google.protobuf.Timestamp  created_at = 2;
     google.protobuf.Timestamp  updated_at = 3;
     relief.common.UsageStatusType latest_usage_status_type = 4;  // 直近の投稿の開設状況
+    google.protobuf.Timestamp  in_training_until = 5;            // 訓練中の場合、その期限
 }
 
 
@@ -119,9 +120,8 @@ message Refuge {
 // サービス定義
 // ----------------------------------------------------------------------------
 
-// @deprecated  CompareAndContrastService を使ってください
 service FacilityService {
     rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
     rpc Search(SearchCondition) returns (FacilityList) { }
-    rpc PostRefuge(Refuge) returns (Refuge) { }
+    rpc PostRefuge(RefugePublic) returns (RefugePublic) { }
 }
