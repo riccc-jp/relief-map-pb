@@ -9,24 +9,20 @@ package relief.post_refuge;
 // メッセージ定義
 // ----------------------------------------------------------------------------
 
+// 施設情報
 message Facility {
     relief.facilities.FacilityPublic   facility_public          = 1;
     google.protobuf.Timestamp          created_at               = 2;
     google.protobuf.Timestamp          updated_at               = 3;
     relief.common.UsageStatusType      latest_usage_status_type = 4;  // 直近の投稿の開設状況
+    google.protobuf.Timestamp          in_training_until        = 5;  // 訓練中の場合、その期限
+    int32                              group_id                 = 6;  // 所属組織
 }
-
 
 // 検索条件
 message SearchCondition {
     repeated uint32                    group_ids               = 1; // 組織ID
     relief.common.UsageStatusType      usage_status_type       = 2; // 使用状況種別
-}
-
-// 避難状況
-message Refuge {
-    relief.facilities.RefugePublic     refuge_public           = 1;  // IN OUT: 避難状況（公開情報）
-    relief.facilities.RefugeInternal   refuge_internal         = 2;  // IN OUT: 避難状況（内部情報）
 }
 
 
@@ -37,5 +33,5 @@ message Refuge {
 service PostRefugeService {
     rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
     rpc Search(SearchCondition) returns (relief.facilities.FacilityList) { }
-    rpc PostRefuge(relief.facilities.Refuge) returns (relief.facilities.Refuge) { }
+    rpc PostRefuge(relief.facilities.RefugePublic) returns (relief.facilities.RefugePublic) { }
 }
