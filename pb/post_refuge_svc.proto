@@ -19,6 +19,11 @@ message Facility {
     int32                              group_id                 = 6;  // 所属組織
 }
 
+// 施設のコレクション
+message FacilityList {
+    repeated Facility items  = 1; // 施設の配列
+}
+
 // 検索条件
 message SearchCondition {
     repeated uint32                    group_ids               = 1; // 組織ID
@@ -32,6 +37,6 @@ message SearchCondition {
 
 service PostRefugeService {
     rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
-    rpc Search(SearchCondition) returns (relief.facilities.FacilityList) { }
+    rpc Search(SearchCondition) returns (FacilityList) { }
     rpc PostRefuge(relief.facilities.RefugePublic) returns (relief.facilities.RefugePublic) { }
 }
