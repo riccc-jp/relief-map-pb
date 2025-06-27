@@ -3,7 +3,7 @@ syntax = "proto3";
 import "common.proto";
 import "facilities.proto";
 
-package relief.compare_and_contrast;
+package relief.compare_and_contract;
 
 // ----------------------------------------------------------------------------
 // 列挙型
@@ -43,7 +43,7 @@ message RefugeWithExtId {
 // サービス定義
 // ----------------------------------------------------------------------------
 
-service CompareAndContrastService {
+service CompareAndContractService {
     // 施設情報の送信と自動紐付け依頼
     rpc UpdateMapping(FacilityWithExtIdList) returns (FacilityWithExtIdList) { }
 
