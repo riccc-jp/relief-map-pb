@@ -11,8 +11,8 @@ package relief.facilities;
 enum FacilityType {
     NO_FACILITY_TYPE = 0;
     SCHOOL = 1;                  // 学校
-    COMMUNITY_CENTER = 2;        // 公民館
-    PARK = 3;                    // 公園
+    COMMUNITY_CENTER = 2;        // 公民館・コミュニティセンター
+    PARK = 3;                    // 公園・広場等
     SHRINE = 4;                  // 神社
     TEMPLE = 5;                  // 寺院
     CHURCHES = 6;                // キリスト教会
