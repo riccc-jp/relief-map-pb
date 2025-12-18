@@ -60,7 +60,8 @@ message Facility {
     FacilityPublic   facility_public      = 1;
     google.protobuf.Timestamp  created_at = 2;
     google.protobuf.Timestamp  updated_at = 3;
-    relief.common.UsageStatusType latest_usage_status_type = 4;  // 直近の投稿の開設状況
+    relief.common.UsageStatusType latest_usage_status_type = 4;    // 直近の投稿の開設状況
+    relief.common.DisasterType    latest_usage_disaster_type = 5;  // 災害種別を表す（直近が開設の場合のみセット）
 }
 
 
@@ -119,7 +120,7 @@ message Refuge {
 // サービス定義
 // ----------------------------------------------------------------------------
 
-// @deprecated  CompareAndContrastService を使ってください
+// @deprecated  PostRefugeService を使ってください
 service FacilityService {
     rpc GetFacilityById(google.protobuf.UInt32Value) returns (Facility) { }
     rpc Search(SearchCondition) returns (FacilityList) { }
