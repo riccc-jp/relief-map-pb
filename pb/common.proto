@@ -21,6 +21,19 @@ enum UsageStatusType {
     INUSE           = 4;  // 開設
 }
 
+// 災害種別
+enum DisasterType {
+    UNKNOWN_DISASTER_TYPE = 0;  // 不明な災害種別
+    EARTHQUAKE       = 1;  // 地震
+    EARTH_AND_SAND   = 2;  // 土砂
+    FLOOD            = 3;  // 洪水
+    INTERNAL_WATER   = 4;  // 内水
+    TSUNAMI          = 5;  // 津波
+    STORM_SURGE      = 6;  // 高潮
+    FIRE             = 7;  // 火災
+    ERUPTION         = 8;  // 噴火
+}
+
 
 // ----------------------------------------------------------------------------
 // 共通のメッセージ定義
